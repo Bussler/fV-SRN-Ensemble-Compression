@@ -10,7 +10,7 @@ Sebastian Weiss[<img alt="ORCID logo" src="https://info.orcid.org/wp-content/upl
 Comparison of field ensemble reconstruction quality for different floating-point compressors (SZ3, TThresh) and volume representation networks (Multi-decoder, Multi-grid) at ~250x compression.
 
 ## Abstract
-
+Test
 Recent studies have shown that volume scene representation networks constitute powerful means to transform 3D scalar fields into extremely compact representations, from which the initial field samples can be randomly accessed. 
 In this work, we evaluate the capabilities of such networks to compress meteorological ensemble data, which are comprised of many separate weather forecast simulations. 
 We analyze whether these networks can effectively exploit similarities between the ensemble members, and how alternative classical compression approaches perform in comparison. 
