@@ -27,7 +27,7 @@ cd pyrenderer
 echo "[INFO] Building pyrenderer"
 mkdir build
 cd build
-cmake -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.1 -DCMAKE_CUDA_COMPILER=/usr/local/cuda-11.1/bin/nvcc -DTORCH_PATH=~/anaconda3/envs/python38torch18/lib/python3.8/site-packages/torch -DRENDERER_BUILD_GUI=OFF -DRENDERER_BUILD_TESTS=OFF -DRENDERER_BUILD_CLI=OFF -DRENDERER_BUILD_TESTS=OFF -DRENDERER_BUILD_OPENGL_SUPPORT=OFF ..
+cmake -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.7 -DCMAKE_CUDA_COMPILER=/usr/local/cuda-11.7/bin/nvcc -DTORCH_PATH=~/anaconda3/envs/python38torch18/lib/python3.8/site-packages/torch -DRENDERER_BUILD_GUI=OFF -DRENDERER_BUILD_TESTS=OFF -DRENDERER_BUILD_CLI=OFF -DRENDERER_BUILD_TESTS=OFF -DRENDERER_BUILD_OPENGL_SUPPORT=OFF -DRENDERER_BUILD_COMPRESSION=OFF ..
 make -j8 VERBOSE=true
 cd ..
 
