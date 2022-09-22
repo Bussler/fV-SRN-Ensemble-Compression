@@ -14,6 +14,7 @@ from ..scene_representation_network import ModularSRN
 from ..scene_representation_network.evaluation_mode import EvaluationMode
 
 
+# Pyrenderer Interface
 class PyrendererSRN(ModularSRN):
 
     @staticmethod

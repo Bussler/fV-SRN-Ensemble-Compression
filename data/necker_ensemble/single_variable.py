@@ -122,6 +122,7 @@ class SingleVariableData(object):
         )
         return pyrenderer.Volume(path)
 
+    # load data to correct device
     def _postprocess(self, data: Tensor):
         if data.device != self.device:
             data = data.to(self.device)

@@ -55,6 +55,7 @@ def build_dataset(mode: DatasetType, args: Dict[str, Any], volume_data_storage: 
     return data
 
 
+# Evaluates given network for current batch
 def build_evaluation_helpers(device, dtype, image_evaluator, loss_screen, loss_world, network, visualization_image_size):
     evaluator_train = EvaluateWorld(network, image_evaluator, loss_world, dtype, device)
     evaluator_val = EvaluateWorld(network, image_evaluator, loss_world, dtype, device)
