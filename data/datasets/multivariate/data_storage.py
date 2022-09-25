@@ -13,6 +13,7 @@ from data.necker_ensemble.single_variable import (
 from common.utils import parse_range_string, is_valid_index_position
 
 
+# used in multivariate run_training script to load data/ access data of storage
 class MultivariateEnsembleDataStorage(object):
 
     @staticmethod

@@ -8,6 +8,8 @@ from common.utils import parse_range_string, is_valid_index_position
 import pyrenderer
 
 
+# used in e.g. run_singleton_training to store data
+# load cvol as pyrenderer.volume
 class VolumeDataStorage(object):
 
     FILE_PATTERN_TIME_KEY = 'time'
@@ -141,14 +143,14 @@ class VolumeDataStorage(object):
 
 
 def _test_volume_data_storage():
-    file_pattern = 'volumes/Ejecta/snapshot_070_256.cvol'
-    base_path = '/home/hoehlein/PycharmProjects/deployment/delllat94/fvsrn/applications'
+    file_pattern = 'datasets/ScalarFlow/sim_000000/volume_000100.cvol'#'volumes/Ejecta/snapshot_070_256.cvol'
+    base_path = ''#'/home/hoehlein/PycharmProjects/deployment/delllat94/fvsrn/applications'
     vds = VolumeDataStorage(
         file_pattern, base_path=base_path
     )
     volume = vds.load_volume()
     feature = volume.get_feature(0)
-    level = feature.get_level(0).to_tensor()
+    level = feature.get_level(0).to_tensor() # Example of getting Tensor out of pyrenderer.Volume()
     print('Finished')
 
 

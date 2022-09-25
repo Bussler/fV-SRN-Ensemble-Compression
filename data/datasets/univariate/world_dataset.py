@@ -30,6 +30,7 @@ def _plot_3d(positions):
     plt.close()
 
 
+# generate test/ validation/ visualization data sets from data storage
 class WorldSpaceDensityData(Dataset):
 
     OUTPUT_KEYS = ['positions', 'targets', 'tf', 'timestep', 'ensemble']
@@ -171,6 +172,7 @@ class WorldSpaceDensityData(Dataset):
         if volume_evaluator is not None and position_sampler is not None:
             self.sample_data(volume_evaluator, position_sampler)
 
+    # why do we reset data at data loader?
     def _reset_data(self):
         self.weights = []
         self.data = {key: [] for key in WorldSpaceDensityData.OUTPUT_KEYS}
@@ -310,6 +312,7 @@ class WorldSpaceDensityData(Dataset):
     def num_ensembles(self):
         return self.num_members()
 
+    # get training data
     def get_dataloader(self, batch_size=None, shuffle=False, drop_last=False, num_workers=0):
         if batch_size is None:
             batch_size = self.batch_size

@@ -1,5 +1,7 @@
 import os
 
+import common.utils
+
 from training.in_out import directories as io
 from training.in_out.multi_run_experiment import MultiRunExperiment
 

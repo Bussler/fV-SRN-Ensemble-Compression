@@ -1,6 +1,9 @@
 import argparse
 import os.path
 import time
+
+import common.utils
+
 from collections import defaultdict
 from contextlib import ExitStack
 from typing import Dict, Any

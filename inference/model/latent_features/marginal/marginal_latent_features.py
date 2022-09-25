@@ -20,7 +20,7 @@ class MarginalLatentFeatures(ILatentFeatures):
             self,
             temporal_features: Optional[ITemporalFeatures] = None,
             ensemble_features: Optional[IEnsembleFeatures] = None,
-            volumetric_features: Optional[IFeatureModule] = None,
+            volumetric_features: Optional[IFeatureModule] = None, # E.g. FeatureGrid
     ):
         dimension = None
         if dimension is None and temporal_features is not None:

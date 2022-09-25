@@ -20,9 +20,9 @@ def set_debug_mode(args):
 
 
 PROJECT_BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-OUTPUT_BASE_PATH = '/path/to/output/dir'
-INTERPRETER_PATH = '/path/to/bin/python'
-DATA_BASE_PATH = {'host-name': '/path/to/data'}
+OUTPUT_BASE_PATH = '~/stash/Masterarbeit/fV-SRN-Ensemble-Compression/experimentRuns/' #'/path/to/output/dir'
+INTERPRETER_PATH = '/home/bussler/anaconda3/envs/python38torch18/bin/python' #'/path/to/bin/python'
+DATA_BASE_PATH = {'TUINI15-VC19': '/home/bussler/stash/Masterarbeit/fV-SRN-Ensemble-Compression/datasets/ScalarFlow/sim_000000/volume_000100.cvol'} #{'host-name': '/path/to/data'}
 
 
 def get_project_base_path():

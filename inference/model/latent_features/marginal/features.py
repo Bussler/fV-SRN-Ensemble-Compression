@@ -37,7 +37,7 @@ class FeatureVector(IFeatureModule):
         return torch.tile(self.data[None, :], (len(positions), 1))
 
 
-# Is this the latent feature grid?
+# This is the latent feature grid
 class FeatureGrid(IFeatureModule):
 
     def uses_positions(self) -> bool:
@@ -62,7 +62,7 @@ class FeatureGrid(IFeatureModule):
         shape = data.shape
         assert len(shape) == 4
         super(FeatureGrid, self).__init__(3, shape[0], debug)
-        self.register_parameter('data', nn.Parameter(data, requires_grad=True))
+        self.register_parameter('data', nn.Parameter(data, requires_grad=True)) # data holds latent feature grid
 
     def grid_size(self):
         return tuple(self.data.shape[-3:])

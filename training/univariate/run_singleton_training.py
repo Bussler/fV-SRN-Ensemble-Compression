@@ -9,6 +9,8 @@ import numpy as np
 import torch
 import tqdm
 
+import common.utils
+
 from data.datasets import DatasetType
 from data.datasets.resampling.resampler import DatasetResampler
 from data.datasets.sampling import PositionSampler

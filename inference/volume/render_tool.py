@@ -49,7 +49,7 @@ class RenderTool(object):
         settings_file = os.path.abspath(args['renderer:settings_file'])
         if cls._config_file_mapper is not None:
             settings_file = cls._config_file_mapper(settings_file)
-        image_evaluator = pyrenderer.load_from_json(settings_file)
+        image_evaluator = pyrenderer.load_from_json(settings_file) #Problem, returns None for my settings file!
         return cls(image_evaluator, device, settings_file=settings_file)
 
     def __init__(self, image_evaluator: IImageEvaluator, device, tf_directory=None, settings_file=None):
