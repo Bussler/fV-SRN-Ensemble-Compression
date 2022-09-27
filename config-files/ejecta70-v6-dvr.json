@@ -457,7 +457,7 @@
             "selectedDensityFeatureIndex": 0,
             "selectedVelocityFeatureIndex": 0,
             "source": "VOLUME",
-            "volumePath": "../volumes/Ejecta/snapshot_070_256.cvol"
+            "volumePath": "../datasets/Ejecta/snapshot_070_256.cvol"
         },
         "SRN": {}
     }
