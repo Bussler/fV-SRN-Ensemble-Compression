@@ -7,10 +7,11 @@ from common.utils import parse_range_string, is_valid_index_position
 
 import pyrenderer
 
+from data.datasets.dataStorageInterface import IDataStorage
 
 # used in e.g. run_singleton_training to store data
 # load cvol as pyrenderer.volume
-class VolumeDataStorage(object):
+class VolumeDataStorage(IDataStorage):
 
     FILE_PATTERN_TIME_KEY = 'time'
     FILE_PATTERN_ENSEMBLE_KEY = 'member'
@@ -113,7 +114,8 @@ class VolumeDataStorage(object):
         vol = pyrenderer.Volume(file_name)
         return vol
 
-    def load_volume(self, timestep=None, ensemble=None, index_access=False):
+
+    def load_volume(self, timestep=None, ensemble=None, variable=None, index_access=False):
         if self.num_timesteps() > 1:
             assert timestep is not None, \
                 f'[ERROR] VolumeDataStorage provides {self.num_timesteps()} timesteps. Argument <time> may not be None.'

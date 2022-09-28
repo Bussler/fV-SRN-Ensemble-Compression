@@ -5,6 +5,8 @@ import os.path
 import common.utils
 import pyrenderer
 
+from data.datasets.dataStorageInterface import IDataStorage
+
 from data.necker_ensemble.single_variable import (
     get_file_name_pattern, VARIABLE_NAMES,
     FILE_NAME_TIME_KEY, FILE_NAME_MEMBER_KEY, FILE_NAME_VARIABLE_KEY,
@@ -14,7 +16,7 @@ from common.utils import parse_range_string, is_valid_index_position
 
 
 # used in multivariate run_training script to load data/ access data of storage
-class MultivariateEnsembleDataStorage(object):
+class MultivariateEnsembleDataStorage(IDataStorage):
 
     @staticmethod
     def init_parser(parser: argparse.ArgumentParser):
