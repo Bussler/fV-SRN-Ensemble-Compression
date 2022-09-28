@@ -10,7 +10,8 @@ import torch
 from torch import nn
 import pyrenderer
 
-from common.raytracing import Raytracing
+#from common.raytracing import Raytracing
+from training.raytracing import Raytracing
 from inference.losses.lossnet import LossNetScreen, LossNetWorld
 from inference.model import ISceneRepresentationNetwork
 from inference.model.pyrenderer import PyrendererSRN
@@ -18,7 +19,9 @@ from inference.model.pyrenderer import PyrendererSRN
 
 def _get_output_mode(network: Union[ISceneRepresentationNetwork, PyrendererSRN]) -> str:
     if isinstance(network, ISceneRepresentationNetwork):
-        return network.output_mode().split(':')[0]
+        outputname = network.output_mode().name
+        return outputname.lower()
+        #return network.output_mode().split(':')[0] # M: output_mode() returns enum, does not have split()
     elif isinstance(network, PyrendererSRN):
         return network.backend_output_mode().value.split(':')[0]
     else:

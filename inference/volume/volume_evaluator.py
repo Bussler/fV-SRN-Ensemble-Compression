@@ -1,6 +1,8 @@
 from typing import Optional, List
 
 import torch
+
+import common.utils
 from pyrenderer import IVolumeInterpolation, Volume
 from torch import Tensor
 
@@ -29,7 +31,15 @@ class VolumeEvaluator(IFieldEvaluator):
             volume_data = self._default_volume
         if mipmap_level is None:
             mipmap_level = self._default_mipmap_level
-        self.interpolator.setSource(volume_data, feature, mipmap_level)
+        #if feature is not None:
+        #    if type(feature) == str:
+        #        features_by_name = {volume_data.get_feature(i).name(): i for i in range(volume_data.num_features())}
+        #        feature = features_by_name[feature]
+        #    assert feature == int(feature)
+        #else:
+        #    feature = 0
+        #feature = int(feature)
+        self.interpolator.setSource(volume_data, feature, mipmap_level) # M: removed feature here (before mipmap_level), is that correct?
         return self
 
     def restore_defaults(self):

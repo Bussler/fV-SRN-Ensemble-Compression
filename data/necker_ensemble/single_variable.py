@@ -9,7 +9,7 @@ import common.utils
 import pyrenderer
 
 
-DATA_BASE_PATH = {'host-name': 'path/to/data'}
+DATA_BASE_PATH = {'TUINI15-VC19': '/home/bussler/stash/Masterarbeit/fV-SRN-Ensemble-Compression/datasets/'}#{'host-name': 'path/to/data'}
 FILE_NAME_NORM_KEY = 'norm_name'
 FILE_NAME_VARIABLE_KEY = 'variable_name'
 FILE_NAME_MEMBER_KEY = 'member'

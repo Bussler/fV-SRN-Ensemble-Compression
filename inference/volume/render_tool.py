@@ -2,6 +2,7 @@ import argparse
 import os.path
 from typing import Callable
 
+import common.utils
 import pyrenderer
 
 from common import utils
@@ -49,7 +50,7 @@ class RenderTool(object):
         settings_file = os.path.abspath(args['renderer:settings_file'])
         if cls._config_file_mapper is not None:
             settings_file = cls._config_file_mapper(settings_file)
-        image_evaluator = pyrenderer.load_from_json(settings_file) #Problem, returns None for my settings file!
+        image_evaluator = pyrenderer.load_from_json(settings_file)
         return cls(image_evaluator, device, settings_file=settings_file)
 
     def __init__(self, image_evaluator: IImageEvaluator, device, tf_directory=None, settings_file=None):
@@ -73,7 +74,14 @@ class RenderTool(object):
             mip_map_level = self._default_mipmap_level
         if feature is None:
             feature = volume_data.get_feature(0).name()
-        self.image_evaluator.volume.setSource(volume_data, feature, mip_map_level)
+        #if feature is not None:
+        #    if type(feature) == str:
+        #        features_by_name = {volume_data.get_feature(i).name(): i for i in range(volume_data.num_features())}
+        #        feature = features_by_name[feature]
+        #    assert feature == int(feature)
+        #else:
+        #    feature = 0
+        self.image_evaluator.volume.setSource(volume_data, feature, mip_map_level) # M: removed mip_map_level here (before mipmap), is that correct?
         return self
 
     def restore_defaults(self):
