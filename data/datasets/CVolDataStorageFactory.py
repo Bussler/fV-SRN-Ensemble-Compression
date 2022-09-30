@@ -2,6 +2,7 @@ import argparse
 
 from data.datasets.multivariate.data_storage import MultivariateEnsembleDataStorage, VARIABLE_NAMES
 from data.datasets.univariate.data_storage import VolumeDataStorage
+from common.fileParser import LoadFromFile
 
 class CVolDataStorageFactory():
 
@@ -96,5 +97,22 @@ def _test_volume_data_storage():
     print('Finished')
 
 
+def _test_parsing():
+    parser = argparse.ArgumentParser()
+    CVolDataStorageFactory.init_parser(parser)
+
+    parser.add_argument('--config', type=open, action=LoadFromFile)
+
+    args = vars(parser.parse_args())
+
+    vds = CVolDataStorageFactory.from_dict(args)
+
+    volume = vds.load_volume()
+    feature = volume.get_feature(0)
+    level = feature.get_level(0).to_tensor()  # Example of getting Tensor out of pyrenderer.Volume()
+    print('Finished')
+
+
 if __name__ == '__main__':
-    _test_volume_data_storage()
+    #_test_volume_data_storage()
+    _test_parsing()
