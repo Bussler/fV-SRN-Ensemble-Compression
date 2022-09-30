@@ -114,5 +114,5 @@ def _test_parsing():
 
 
 if __name__ == '__main__':
-    #_test_volume_data_storage()
-    _test_parsing()
+    _test_volume_data_storage()
+    #_test_parsing()
