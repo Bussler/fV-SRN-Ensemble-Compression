@@ -26,6 +26,9 @@ from training.optimizer import Optimizer
 from training.profiling import build_profiler
 from training.visualization import Visualizer
 
+from data.datasets.CVolDataStorageFactory import CVolDataStorageFactory
+from common.fileParser import LoadFromFile
+
 torch.set_num_threads(12)
 device = torch.device('cuda:0')
 
@@ -40,7 +43,8 @@ PyrendererOutputParameterization.set_output_mode(
 def build_parser():
     parser = argparse.ArgumentParser()
     StorageManager.init_parser(parser, os.path.split(__file__)[0])
-    VolumeDataStorage.init_parser(parser)
+    #VolumeDataStorage.init_parser(parser)
+    CVolDataStorageFactory.init_parser(parser)  # M: New version of init parser
     PositionSampler.init_parser(parser)
     OrderedWorldSpaceDensityData.init_parser(parser)
     WorldSpaceVisualizationData.init_parser(parser)
@@ -50,6 +54,7 @@ def build_parser():
     LossFactory.init_parser(parser)
     Optimizer.init_parser(parser)
     parser.add_argument('--global-seed', type=int, default=124, help='random seed to use. Default=124')
+    parser.add_argument('--config', type=open, action=LoadFromFile)  # M: parse arguments from file
     return parser
 
 
@@ -75,7 +80,8 @@ def main():
     print(f'[INFO] Device-count: {torch.cuda.device_count()}')
 
     print('[INFO] Initializing volume data storage.')
-    volume_data_storage = VolumeDataStorage.from_dict(args)
+    #volume_data_storage = VolumeDataStorage.from_dict(args)
+    volume_data_storage = CVolDataStorageFactory.from_dict(args)  # M: New version of init volume data storage
 
     print('[INFO] Initializing rendering tool.')
     render_tool = RenderTool.from_dict(args, device,)
