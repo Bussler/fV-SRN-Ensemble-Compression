@@ -3,6 +3,7 @@ import torch
 from PIL import Image
 import numpy as np
 from matplotlib import pyplot as plt
+import imageio
 
 import common.utils
 import pyrenderer
@@ -21,12 +22,20 @@ def loadVolume(file_name):
     vol = pyrenderer.Volume(file_name)
     return vol
 
-def _render_and_refine(image_evaluator):
+def render_and_refine(image_evaluator):
     resolution = (512, 512)
     img = image_evaluator.render(*resolution)
     # tonemapping
     img = image_evaluator.extract_color(img)
     return img
+
+def convert_image(img):
+    out_img = np.squeeze(img) #img[0].cpu().detach().numpy()
+    out_img *= 255.0
+    out_img = out_img.clip(0, 255)
+    out_img = np.uint8(out_img)
+    out_img = np.moveaxis(out_img, (1, 2, 0), (0, 1, 2))
+    return Image.fromarray(out_img)
 
 def renderCVol():
     args = {'renderer:settings_file': RENDERCONFIGFILE}
@@ -35,15 +44,17 @@ def renderCVol():
     render_tool = RenderTool.from_dict(args, device, )
     image_evaluator = render_tool.set_source(vol).get_image_evaluator()
     image_evaluator.camera.pitchYawDistance.value = render_tool.default_camera_pitch_yaw_distance()
-    img = _render_and_refine(image_evaluator).cpu().numpy()
+    img = render_and_refine(image_evaluator).cpu().numpy()
 
-    img = np.squeeze(img)
-    img = np.resize(img, (img.shape[1], img.shape[2], img.shape[0]))
-    img = (img * 255).astype(np.uint8)
+    #img = np.squeeze(img)
+    #img = np.moveaxis(img, (1, 2, 0), (0, 1, 2))
+    #img = (img * 255).astype(np.uint8)
+    #printImg = Image.fromarray(img)  # Image.fromarray(img, 'RGB')
 
-    printImg = Image.fromarray(img) #Image.fromarray(img, 'RGB')
+    out_img = convert_image(img)
+
     imageName = 'testImage.png'
-    printImg.save(imageName)
+    out_img.save(imageName)
     print("Rendering Complete. Saved to: ", imageName)
 
 
