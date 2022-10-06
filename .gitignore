@@ -2,7 +2,6 @@
 bin/
 build/
 cmake-build-debug/
-external/
 
 # Python
 *.pyc
@@ -25,3 +24,7 @@ external/
 
 # Git
 .idea/
+
+external/
+training/univariate/results
+experimentRuns/
