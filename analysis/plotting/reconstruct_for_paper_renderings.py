@@ -40,16 +40,20 @@ def _evaluate_network(model_path, target_folder):
 
 
 def evaluate_multi_grid_model():
-    model_path = '/home/hoehlein/PycharmProjects/results/fvsrn/paper/ensemble/multi_grid/resampling/12-22-16_32-32-32-32_1-65/results/model/run00004/model_epoch_50.pth'
+    #model_path = '/home/hoehlein/PycharmProjects/results/fvsrn/paper/ensemble/multi_grid/resampling/12-22-16_32-32-32-32_1-65/results/model/run00004/model_epoch_50.pth'
+    model_path = ''
     # old path: '/home/hoehlein/PycharmProjects/results/fvsrn/paper/ensemble/multi_grid/num_channels/6-44-31_64_1-65_fast/results/model/run00005/model_epoch_50.pth'
-    target_folder = '/home/hoehlein/Desktop/rendering_data/quality_250/tk/multi_grid'
+    #target_folder = '/home/hoehlein/Desktop/rendering_data/quality_250/tk/multi_grid'
+    target_folder = ''
     _evaluate_network(model_path, target_folder)
 
 
 def evaluate_multi_core_model():
-    model_path = '/home/hoehlein/PycharmProjects/results/fvsrn/paper/ensemble/multi_core/resampling/12-22-16_32-32-32-32_1-65/results/model/run00004/model_epoch_50.pth'
+    #model_path = '/home/hoehlein/PycharmProjects/results/fvsrn/paper/ensemble/multi_core/resampling/12-22-16_32-32-32-32_1-65/results/model/run00004/model_epoch_50.pth'
     # old path: '/home/hoehlein/PycharmProjects/results/fvsrn/paper/ensemble/multi_core/num_channels/6-44-31_64_1-65_fast/results/model/run00012/model_epoch_50.pth'
-    target_folder = '/home/hoehlein/Desktop/rendering_data/quality_250/tk/multi_core'
+    model_path = '/home/bussler/stash/Masterarbeit/fV-SRN-Ensemble-Compression/training/univariate/results/model/run00015/model_epoch_250.pth'
+    target_folder = '/home/bussler/stash/Masterarbeit/fV-SRN-Ensemble-Compression/experimentRuns/multi_coreExperiment'
+    #target_folder = '/home/hoehlein/Desktop/rendering_data/quality_250/tk/multi_core'
     _evaluate_network(model_path, target_folder)
 
 
@@ -109,8 +113,8 @@ def evaluate_zfp():
 
 
 if __name__ =='__main__':
-    evaluate_sz3() # 248.81x
+    #evaluate_sz3() # 248.81x
     # evaluate_zfp()
-    evaluate_tthresh() # 253.25x
+    #evaluate_tthresh() # 253.25x
     evaluate_multi_core_model() # 251.88x
-    evaluate_multi_grid_model() # 248.00x
+    #evaluate_multi_grid_model() # 248.00x

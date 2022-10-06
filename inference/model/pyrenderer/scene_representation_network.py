@@ -14,7 +14,7 @@ from ..scene_representation_network import ModularSRN
 from ..scene_representation_network.evaluation_mode import EvaluationMode
 
 
-# Pyrenderer Interface
+# M: Pyrenderer Interface
 class PyrendererSRN(ModularSRN):
 
     @staticmethod
@@ -75,7 +75,7 @@ class PyrendererSRN(ModularSRN):
                 evaluation_mode = EvaluationMode.RENDERING
             else:
                 raise NotImplementedError()
-        return super(PyrendererSRN, self).forward(positions, transfer_functions, time, member, evaluation_mode)
+        return super(PyrendererSRN, self).forward(positions, transfer_functions, time, member, evaluation_mode) # M: forward data through input param, latent features, core nw, output param
 
     def use_direction(self) -> bool:
         return self.uses_direction()

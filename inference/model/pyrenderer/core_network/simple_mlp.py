@@ -22,7 +22,7 @@ class SimpleMLP(ProcessorSequentialWrapper):
         current_channels = data_input_channels + latent_input_channels
         for i, s in enumerate(layer_sizes):
             layers.append((f'linear{i}', nn.Linear(current_channels, s)))
-            layers.append((f'{activation.lower()}{i}', activ_class(*activation_params)))
+            layers.append((f'{activation.lower()}{i}', activ_class(*activation_params))) # M: after this dropout?
             current_channels = s
         last_layer = nn.Linear(current_channels, output_channels)
         layers.append((f'linear{len(layer_sizes)}', last_layer))

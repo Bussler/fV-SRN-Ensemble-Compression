@@ -64,7 +64,7 @@ class MultiRunExperiment(object):
     def _run_config(self, config: Dict[str, Any], flags: List[str], timestamp: str):
 
         device_manager = DeviceManager()
-        free_devices = device_manager.find_free_devices(num_devices=1, force_on_single=True) #find_free_devices does not exist, use other one?
+        free_devices = device_manager.set_free_devices_as_visible(num_devices=1, force_on_single=True)#find_free_devices(num_devices=1, force_on_single=True)
         print(f'[INFO] Free devices: {free_devices}')
 
         execution_command = [self.interpreter_path, self.script_path]

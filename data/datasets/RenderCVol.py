@@ -9,8 +9,8 @@ import common.utils
 import pyrenderer
 from inference.volume import RenderTool
 
-FILE = 'datasets/Ejecta/snapshot_070_256.cvol'
-#FILE = 'experimentRuns/parameter_normalization/m01.cvol'
+#FILE = 'datasets/Ejecta/snapshot_070_256.cvol'
+FILE = 'experimentRuns/parameter_normalization/m01.cvol'
 RENDERCONFIGFILE = 'config-files/ejecta70-v6-dvr.json'
 
 torch.set_num_threads(12)
@@ -20,6 +20,12 @@ def loadVolume(file_name):
     if not os.path.exists(file_name):
         raise ValueError(f'[ERROR] Volume file {file_name} does not exist.')
     vol = pyrenderer.Volume(file_name)
+
+    # M: Hack for ejecta dataset
+    vol.worldX = 1
+    vol.worldY = 1
+    vol.worldZ = 1
+
     return vol
 
 def render_and_refine(image_evaluator):
@@ -41,6 +47,7 @@ def renderCVol():
     args = {'renderer:settings_file': RENDERCONFIGFILE}
 
     vol = loadVolume(FILE)
+
     render_tool = RenderTool.from_dict(args, device, )
     image_evaluator = render_tool.set_source(vol).get_image_evaluator()
     image_evaluator.camera.pitchYawDistance.value = render_tool.default_camera_pitch_yaw_distance()

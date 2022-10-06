@@ -101,7 +101,7 @@ class PyrendererSingleCoreNetwork(PyrendererCoreNetwork):
             self, data_input: Tensor, latent_input: Union[Tensor, None],
             positions: Tensor, transfer_functions: Tensor, time: Tensor, member: Tensor
     ) -> Tensor:
-        return self.processor(data_input, latent_input, positions, transfer_functions, time, member)
+        return self.processor(data_input, latent_input, positions, transfer_functions, time, member) # M: Pass forward to processor: E.g. Simple_MLP
 
     def data_input_channels(self) -> int:
         return self.processor.data_input_channels()

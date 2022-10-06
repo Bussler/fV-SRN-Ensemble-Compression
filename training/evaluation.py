@@ -159,7 +159,7 @@ class EvaluateWorld:
 
         position, target, tf, time, ensemble = dataloader_batch
         # evaluate network
-        predictions = self._network(position, tf, time, ensemble, 'world')
+        predictions = self._network(position, tf, time, ensemble, 'world') # M: forward pass for network
         # loss
         if self._loss is None:
             total_loss = None
